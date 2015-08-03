@@ -1,2 +1,2 @@
 # com.elfiky.cordova.plugin.appbrain
-appbrain adz  
+com.elfiky.cordova.plugin.appbrain cordova plugin to add appbrain ads to your phonegap application

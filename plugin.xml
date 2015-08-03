@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        id="com.elfiky.cordova.plugin.appbrain"
+        version="1.0">
+
+    <name>AppNextPlugin</name>
+
+    <engines>
+        <engine name="cordova" version=">=3.4.0"/>
+    </engines>
+
+    <asset src="js/AppbrainPlugin.js" target="js/AppbrainPlugin.js"/>
+
+    <js-module src="js/AppbrainPlugin.js" name="Appbrain">
+        <clobbers target="Appbrain"/>
+    </js-module>
+
+
+    <platform name="android">
+        <source-file src="android/AppBrainVideoPlugin.java" target-dir="src/com/elfiky/cordova/plugin/Appbrain/" />
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Appbrain">
+                <param name="android-package" value="com.appbrain.AppBrainBanner"/>
+            </feature>
+        </config-file>
+
+        <source-file src="android/appbrain-applift-sdk-11.02.jar" target-dir="libs"/>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity
+                    android:name="com.appbrain.AppBrainActivity"
+                    android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
+            <service android:name="com.appbrain.AppBrainService" />
+            <receiver
+                    android:name="com.appbrain.ReferrerReceiver"
+                    android:exported="true" >
+                <intent-filter>
+                    <action android:name="com.android.vending.INSTALL_REFERRER" />
+                </intent-filter>
+            </receiver>
+            <meta-data android:name="appbrain.child_directed" android:value="true" />
+        </config-file>
+
+    </platform>
+
+</plugin>
