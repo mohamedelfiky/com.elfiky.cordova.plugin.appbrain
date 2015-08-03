@@ -1,10 +1,11 @@
 var AppBrain = {
 
   initializeAppBrain: function (successCallback, errorCallback) {
-    return cordova.exec(successCallback, errorCallback, 'AppBrainVideoPlugin', 'AppBrainVideoPlugin', []);
-  }
-  , showPopup: function (successCallback, errorCallback) {
-    return cordova.exec(successCallback, errorCallback, 'AppBrainVideoPlugin', 'showPopup', []);
+    return cordova.exec(successCallback, errorCallback, 'AppBrainPlugin', 'initSdk', []);
+  },
+
+  showPopup: function (successCallback, errorCallback) {
+    return cordova.exec(successCallback, errorCallback, 'AppBrainPlugin', 'showBanner', []);
   }
 };
 

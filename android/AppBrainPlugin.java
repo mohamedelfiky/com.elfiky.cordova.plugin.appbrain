@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 public class AppBrainPlugin extends CordovaPlugin {
 
 	public static final String ACTION_INIT_SDK_AD = "initSdk";
-	public static final String ACTION_SHOW_Banner_AD = "show_bannar";
+	public static final String ACTION_SHOW_Banner_AD = "showBanner";
 	public static final String ACTION_SHOW_INTERSTITIAL_AD = "show_interstital";
 
 	private final String TAG = "appbrain_log";
