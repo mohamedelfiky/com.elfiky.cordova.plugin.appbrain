@@ -20,8 +20,8 @@
         <source-file src="android/AppBrainPlugin.java" target-dir="src/com/elfiky/cordova/plugin/Appbrain/" />
 
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="Appbrain">
-                <param name="android-package" value="com.appbrain.AppBrainBanner"/>
+            <feature name="AppBrainPlugin">
+                <param name="android-package" value="com.elfiky.cordova.plugin.appbrain.AppBrainPlugin"/>
             </feature>
         </config-file>
 
