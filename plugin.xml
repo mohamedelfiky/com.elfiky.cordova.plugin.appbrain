@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
-        id="com.elfiky.cordova.plugin.appbrain"
+        id="com.elfiky.cordova.plugin.Appbrain"
         version="1.0">
 
     <name>AppBrainPlugin</name>
@@ -21,7 +21,7 @@
 
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="AppBrainPlugin">
-                <param name="android-package" value="com.elfiky.cordova.plugin.appbrain.AppBrainPlugin"/>
+                <param name="android-package" value="com.elfiky.cordova.plugin.Appbrain.AppBrainPlugin"/>
             </feature>
         </config-file>
 
@@ -41,7 +41,6 @@
             </receiver>
             <meta-data android:name="appbrain.child_directed" android:value="true" />
         </config-file>
-
     </platform>
 
 </plugin>
