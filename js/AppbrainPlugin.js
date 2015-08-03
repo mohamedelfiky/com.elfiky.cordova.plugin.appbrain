@@ -6,6 +6,10 @@ var AppBrain = {
 
   showPopup: function (successCallback, errorCallback) {
     return cordova.exec(successCallback, errorCallback, 'AppBrainPlugin', 'showBanner', []);
+  },
+
+  showPopup: function (successCallback, errorCallback) {
+    return cordova.exec(successCallback, errorCallback, 'AppBrainPlugin', 'showBanner', []);
   }
 };
 
