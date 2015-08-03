@@ -9,7 +9,7 @@ var AppBrain = {
   },
 
   showPopup: function (successCallback, errorCallback) {
-    return cordova.exec(successCallback, errorCallback, 'AppBrainPlugin', 'showBanner', []);
+    return cordova.exec(successCallback, errorCallback, 'AppBrainPlugin', 'showInterstitial', []);
   }
 };
 
