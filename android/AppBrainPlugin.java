@@ -11,7 +11,7 @@ import com.appbrain.AppBrainBanner;
 import android.util.Log;
 import android.view.ViewGroup;
 
-public class AppBrainVideoPlugin extends CordovaPlugin {
+public class AppBrainPlugin extends CordovaPlugin {
 
 	public static final String ACTION_INIT_SDK_AD = "initSdk";
 	public static final String ACTION_SHOW_Banner_AD = "show_bannar";

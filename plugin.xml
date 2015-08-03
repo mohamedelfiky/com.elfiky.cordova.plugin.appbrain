@@ -17,7 +17,7 @@
 
 
     <platform name="android">
-        <source-file src="android/AppBrainVideoPlugin.java" target-dir="src/com/elfiky/cordova/plugin/Appbrain/" />
+        <source-file src="android/AppBrainPlugin.java" target-dir="src/com/elfiky/cordova/plugin/Appbrain/" />
 
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="Appbrain">
