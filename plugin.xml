@@ -3,7 +3,7 @@
         id="com.elfiky.cordova.plugin.appbrain"
         version="1.0">
 
-    <name>AppNextPlugin</name>
+    <name>AppBrainPlugin</name>
 
     <engines>
         <engine name="cordova" version=">=3.4.0"/>
