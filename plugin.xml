@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
-        id="com.elfiky.cordova.plugin.Appbrain"
+        id="com.elfiky.cordova.plugin.appbrain"
         version="1.0">
 
     <name>AppBrainPlugin</name>
@@ -17,11 +17,11 @@
 
 
     <platform name="android">
-        <source-file src="android/AppBrainPlugin.java" target-dir="src/com/elfiky/cordova/plugin/Appbrain/" />
+        <source-file src="android/AppBrainPlugin.java" target-dir="src/com/elfiky/cordova/plugin/appbrain/" />
 
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="AppBrainPlugin">
-                <param name="android-package" value="com.elfiky.cordova.plugin.Appbrain.AppBrainPlugin"/>
+                <param name="android-package" value="com.elfiky.cordova.plugin.appbrain.AppBrainPlugin"/>
             </feature>
         </config-file>
 
