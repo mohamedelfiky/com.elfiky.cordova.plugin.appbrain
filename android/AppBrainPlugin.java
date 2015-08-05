@@ -1,4 +1,4 @@
-package com.elfiky.cordova.plugin.Appbrain;
+package com.elfiky.cordova.plugin.appbrain;
 
 import org.apache.cordova.*;
 import org.json.JSONObject;
