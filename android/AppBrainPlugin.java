@@ -97,6 +97,7 @@ public class AppBrainPlugin extends CordovaPlugin {
 							.findViewById(android.R.id.content)).getChildAt(0);
 					if(last_bannar != null){
 						viewGroup.removeView(last_bannar);
+						last_bannar= null;
 					}
 					
 					Log.v(TAG, "Show appbrain Interstitial ad");
@@ -112,10 +113,18 @@ public class AppBrainPlugin extends CordovaPlugin {
 		return null;
 	}
 	public void addBanner() {
-		last_bannar = new AppBrainBanner(cordova.getActivity());
 
 		ViewGroup viewGroup = (ViewGroup) ((ViewGroup) cordova.getActivity()
 				.findViewById(android.R.id.content)).getChildAt(0);
+		if(last_bannar != null)
+		{
+			try {
+				viewGroup.removeView(last_bannar);
+			} catch (Exception ex) {
+				Log.e(TAG, ex.getMessage());
+			}
+		}
+		last_bannar = new AppBrainBanner(cordova.getActivity());
 		viewGroup.addView(last_bannar);
 	}
 
