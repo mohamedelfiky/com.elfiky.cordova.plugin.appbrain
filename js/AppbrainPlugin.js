@@ -10,6 +10,10 @@ var AppBrain = {
 
   showInterstitial: function (successCallback, errorCallback) {
     return cordova.exec(successCallback, errorCallback, 'AppBrainPlugin', 'showInterstitial', []);
+  },
+
+  hideBannerView: function (successCallback, errorCallback) {
+    return  cordova.exec(successCallback, errorCallback, 'AppBrainPlugin', 'hideBannerView', []);
   }
 };
 

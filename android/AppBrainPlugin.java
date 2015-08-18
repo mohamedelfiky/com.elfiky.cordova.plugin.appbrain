@@ -8,6 +8,8 @@ import org.json.JSONException;
 import com.appbrain.AppBrain;
 import com.appbrain.AppBrainBanner;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.ViewGroup;
 
@@ -15,7 +17,9 @@ public class AppBrainPlugin extends CordovaPlugin {
 
 	public static final String ACTION_INIT_SDK_AD = "initSdk";
 	public static final String ACTION_SHOW_Banner_AD = "showBanner";
+	public static final String ACTION_HIDE_Banner_AD = "hideBannerView";
 	public static final String ACTION_SHOW_INTERSTITIAL_AD = "showInterstitial";
+	public static AppBrainBanner last_bannar;
 
 	private final String TAG = "appbrain_log";
 
@@ -30,6 +34,8 @@ public class AppBrainPlugin extends CordovaPlugin {
 			AppBrain.init(cordova.getActivity());
 		} else if (ACTION_SHOW_INTERSTITIAL_AD.equals(action)) {
 			executeCreateInterstitialAd(callbackContext);
+		}else if (ACTION_HIDE_Banner_AD.equals(action)) {
+			hideBannerView(callbackContext);
 		}
 
 		return true;
@@ -65,6 +71,7 @@ public class AppBrainPlugin extends CordovaPlugin {
 			public void run() {
 				try {
 					AppBrain.getAds().showInterstitial(cordova.getActivity());
+					
 					Log.v(TAG, "Show appbrain Interstitial ad");
 				} catch (Exception ex) {
 					Log.e(TAG, "Error loading appbrain Interstitial");
@@ -78,12 +85,38 @@ public class AppBrainPlugin extends CordovaPlugin {
 		return null;
 	}
 
+	
+	private PluginResult hideBannerView(
+			final CallbackContext callbackContext) {
+
+		cordova.getActivity().runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					ViewGroup viewGroup = (ViewGroup) ((ViewGroup) cordova.getActivity()
+							.findViewById(android.R.id.content)).getChildAt(0);
+					if(last_bannar != null){
+						viewGroup.removeView(last_bannar);
+					}
+					
+					Log.v(TAG, "Show appbrain Interstitial ad");
+				} catch (Exception ex) {
+					Log.e(TAG, "Error loading appbrain Interstitial");
+					Log.e(TAG, ex.getMessage());
+				}
+
+				callbackContext.success();
+			}
+		});
+
+		return null;
+	}
 	public void addBanner() {
-		AppBrainBanner banner = new AppBrainBanner(cordova.getActivity());
+		last_bannar = new AppBrainBanner(cordova.getActivity());
 
 		ViewGroup viewGroup = (ViewGroup) ((ViewGroup) cordova.getActivity()
 				.findViewById(android.R.id.content)).getChildAt(0);
-		viewGroup.addView(banner);
+		viewGroup.addView(last_bannar);
 	}
 
 }
