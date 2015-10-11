@@ -8,10 +8,14 @@ import org.json.JSONException;
 import com.appbrain.AppBrain;
 import com.appbrain.AppBrainBanner;
 
+import android.view.Gravity;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 
 public class AppBrainPlugin extends CordovaPlugin {
 
@@ -93,11 +97,19 @@ public class AppBrainPlugin extends CordovaPlugin {
 			@Override
 			public void run() {
 				try {
-					ViewGroup viewGroup = (ViewGroup) ((ViewGroup) cordova.getActivity()
-							.findViewById(android.R.id.content)).getChildAt(0);
-					if(last_bannar != null){
-						viewGroup.removeView(last_bannar);
-						last_bannar= null;
+					if(last_bannar != null)
+					{
+						try {
+							((ViewGroup) last_bannar.getParent()).removeView(last_bannar);
+							 ViewGroup viewGroup = (ViewGroup) ((ViewGroup) cordova.getActivity()
+										.findViewById(android.R.id.content)).getChildAt(0);
+
+					        	Integer parent_height = ((FrameLayout) viewGroup.getParent()).getMeasuredHeight();
+							 viewGroup.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.FILL_PARENT, parent_height));
+								
+						} catch (Exception ex) {
+							Log.e(TAG, ex.getMessage());
+						}
 					}
 					
 					Log.v(TAG, "Show appbrain Interstitial ad");
@@ -113,19 +125,35 @@ public class AppBrainPlugin extends CordovaPlugin {
 		return null;
 	}
 	public void addBanner() {
+		try{
 
-		ViewGroup viewGroup = (ViewGroup) ((ViewGroup) cordova.getActivity()
-				.findViewById(android.R.id.content)).getChildAt(0);
-		if(last_bannar != null)
-		{
-			try {
-				viewGroup.removeView(last_bannar);
-			} catch (Exception ex) {
-				Log.e(TAG, ex.getMessage());
+	        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, Gravity.BOTTOM);
+	        ViewGroup viewGroup = (ViewGroup) ((ViewGroup) cordova.getActivity()
+					.findViewById(android.R.id.content)).getChildAt(0);
+        	Integer parent_height = ((FrameLayout) viewGroup.getParent()).getMeasuredHeight();
+			Log.e(TAG, "before sub height: "+viewGroup.getMeasuredHeight());
+			if(last_bannar != null)
+			{
+				try {
+					((ViewGroup) last_bannar.getParent()).removeView(last_bannar);
+					viewGroup.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.FILL_PARENT, parent_height));
+
+					Log.e(TAG, "after adding height: " + parent_height);
+				} catch (Exception ex) {
+					Log.e(TAG, ex.getMessage());
+				}
 			}
+	 
+			last_bannar = new AppBrainBanner(cordova.getActivity());
+
+			viewGroup.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.FILL_PARENT, parent_height-120));
+
+			Log.e(TAG, "after sub height: "+(parent_height -120));
+			cordova.getActivity().addContentView(last_bannar, params);
+		}catch(Exception ex){
+			Log.e(TAG, ex.getMessage());
 		}
-		last_bannar = new AppBrainBanner(cordova.getActivity());
-		viewGroup.addView(last_bannar);
+
 	}
 
 }
